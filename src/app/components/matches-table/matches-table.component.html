@@ -1,0 +1,25 @@
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Score One</th>
+        <th>Score Two</th>
+        <th>Team One</th>
+        <th>Team two</th>
+        <th>Actions</th>
+    </tr>
+    <tr *ngFor="let m of pageOfItems, let i = index">
+        <td>{{i+1}}</td>
+        <td>{{m.scoreOne}}</td>
+        <td>{{m.scoreTwo}}</td>
+        <td>{{m.teamOne}}</td>
+        <td>{{m.teamTwo}}</td>
+        <td>
+            <button class="btn btn-success" (click)="goToDisplay(m._id)">Display</button>
+            <button class="btn btn-info" (click)="goToEdit(m._id)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteMatch(m._id)">Delete</button>
+        </td>
+    </tr>
+</table>
+<div class="card-footer pb-0 pt-3">
+    <jw-pagination [items]="matches" [pageSize]="2" (changePage)="onChangePage($event)"></jw-pagination>
+</div>

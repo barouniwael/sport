@@ -1,0 +1,92 @@
+<div class="hero overlay" style="background-image: url('assets/images/bg_3.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-9 mx-auto text-center">
+                <h1 class="text-white">Signup</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <form [formGroup]="signupForm">
+                    <div class="form-group">
+
+                        <!-- FIRST NAME  -->
+                        <input type="text" class="form-control" formControlName="firstName" placeholder="First Name">
+                    </div>
+                    <div *ngIf="signupForm.controls['firstName'].invalid && 
+                               (signupForm.controls['firstName'].dirty ||signupForm.controls['firstName'].touched)">
+                        <div *ngIf="signupForm.controls['firstName'].errors.required" style="color: red;"> First Name is
+                            required </div>
+                        <div *ngIf="signupForm.controls['firstName'].errors.minlength" style="color: red;">first name
+                            must have at 3 chars</div>
+                    </div>
+
+                    <!-- LAST NAME   -->
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
+                    </div>
+                    <div *ngIf="signupForm.controls['lastName'].invalid && 
+                               (signupForm.controls['lastName'].dirty ||signupForm.controls['lastName'].touched)">
+                        <div *ngIf="signupForm.controls['lastName'].errors.required" style="color: red;">
+                            Last Name is required </div>
+                        <div *ngIf="signupForm.controls['lastName'].errors.minlength" style="color: red;">last name
+                            must have at 5 chars</div>
+                    </div>
+
+                    <!-- EMAIL  -->
+                    <div class="form-group">
+                        <input type="email" class="form-control" formControlName="email" placeholder="Email">
+
+                    </div>
+                    <div *ngIf="signupForm.controls['email'].invalid && 
+                        (signupForm.controls['email'].dirty ||signupForm.controls['email'].touched)">
+                        <div *ngIf="signupForm.controls['email'].errors.required" style="color: red;">
+                            Email is required </div>
+                        <div *ngIf="signupForm.controls['email'].errors.email" style="color: red;"> email format invalid
+                        </div>
+                    </div>
+
+
+                    <!-- PASSOWRD  -->
+                    <div class="form-group">
+                        <input type="password" class="form-control" formControlName="pwd" placeholder="Password">
+                    </div>
+                    <div *ngIf="signupForm.controls['pwd'].invalid && 
+                    (signupForm.controls['pwd'].dirty ||signupForm.controls['pwd'].touched)">
+                        <div *ngIf="signupForm.controls['pwd'].errors.required" style="color: red;">
+                            password is required </div>
+                        <div *ngIf="signupForm.controls['pwd'].errors.minlength" style="color: red;">password
+                            must have at 6 chars </div>
+                        <div *ngIf="signupForm.controls['pwd'].errors.maxlength" style="color: red;">password
+                            must have at 12 chars </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" formControlName="confirmPwd"
+                            placeholder="Confirm Password">
+                    </div>
+                    <div *ngIf="signupForm.controls['confirmPwd'].invalid && 
+                    (signupForm.controls['pwd'].dirty ||signupForm.controls['pwd'].touched)">
+                        <div *ngIf="signupForm.controls['confirmPwd'].errors.x" style="color: red;">
+                          confirm password Must match pwd </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button class="btn btn-warning " (click)="filePicker.click()"> please select avatar</button>
+                   <img [src]="imagePreview" alt="" style="width:100px ; width:100px" *ngIf="imagePreview">
+                    </div>
+                    <div class="form-group">
+                      <input type="file" style="visibility: hidden;" #filePicker (change)='onImageSelected($event)'>
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" class="btn btn-primary py-3 px-5" (click)="signup()" value="Signup">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
